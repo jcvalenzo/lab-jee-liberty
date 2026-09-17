@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="EIBS Playground local server">
+    <featureManager>
+        <feature>webProfile-6.0</feature>
+        <feature>servlet-3.0</feature>
+        <feature>jsp-2.2</feature>
+        <feature>jdbc-4.0</feature>
+    </featureManager>
+
+    <httpEndpoint id="defaultHttpEndpoint" host="*" httpPort="9080" httpsPort="9443" />
+
+    <library id="h2Library">
+        <fileset dir="${server.config.dir}/lib" includes="h2-*.jar" />
+    </library>
+
+    <dataSource id="eibsDataSource" jndiName="jdbc/eibsDataSource">
+        <jdbcDriver libraryRef="h2Library" />
+        <properties url="jdbc:h2:${server.config.dir}/resources/eibs-playground;AUTO_SERVER=TRUE" user="sa" password="" />
+    </dataSource>
+
+    <applicationManager autoExpand="true" />
+</server>
