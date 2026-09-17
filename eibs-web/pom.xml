@@ -63,11 +63,11 @@
                     <libertyRuntimeVersion>22.0.0.12</libertyRuntimeVersion>
                     <serverName>eibsServer</serverName>
                     <copyDependencies>
+                        <location>lib</location>
                         <dependency>
                             <groupId>com.h2database</groupId>
                             <artifactId>h2</artifactId>
                             <version>${h2.version}</version>
-                            <location>lib</location>
                         </dependency>
                     </copyDependencies>
                 </configuration>

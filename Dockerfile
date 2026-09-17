@@ -8,7 +8,7 @@ COPY eibs-web eibs-web
 COPY eibs-ear eibs-ear
 RUN mvn -B clean package
 
-FROM icr.io/appcafe/open-liberty:full-java8-openj9-ubi
+FROM icr.io/appcafe/open-liberty:22.0.0.12-full-java8-openj9-ubi
 COPY --chown=1001:0 eibs-web/src/main/liberty/config/server.xml /config/server.xml
 COPY --chown=1001:0 --from=builder /workspace/eibs-ear/target/eibs-playground.ear /config/apps/eibs-playground.ear
 COPY --chown=1001:0 --from=builder /root/.m2/repository/com/h2database/h2/2.1.214/h2-2.1.214.jar /config/lib/h2-2.1.214.jar

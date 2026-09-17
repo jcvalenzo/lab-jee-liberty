@@ -2,7 +2,7 @@
 
 ## Prerrequisitos
 
-- JDK 8 instalado y seleccionado para compilar el proyecto. El código se compila con `source` y `target` 1.8.
+- JDK 8 instalado y seleccionado para compilar el proyecto. El código se compila con `source` y `target` 1.8 y usa Java EE 7 (`javax.*`).
 - Maven 3.8 o superior disponible como `mvn`.
 - Docker Desktop o un daemon Docker compatible para el despliegue en contenedor.
 - Acceso a Maven Central y al registro de Open Liberty durante la primera descarga de dependencias, runtime o imagen.
@@ -33,7 +33,7 @@ mvn -pl eibs-web test
 
 ## Liberty Local
 
-El flujo de desarrollo usa el WAR directamente. El plugin descarga Open Liberty, crea el servidor `eibsServer`, copia H2 y aplica `eibs-web/src/main/liberty/config/server.xml`.
+El flujo de desarrollo usa el WAR directamente. El plugin descarga Open Liberty 22.0.0.12, crea el servidor `eibsServer`, copia H2 y aplica `eibs-web/src/main/liberty/config/server.xml`. El servidor usa el perfil Java EE 7 con `webProfile-7.0`, `servlet-3.1`, `jsp-2.3` y `jdbc-4.1`.
 
 ```sh
 mvn -pl eibs-web liberty:dev
@@ -57,7 +57,7 @@ rm -rf eibs-web/target/liberty/wlp/usr/servers/eibsServer/resources
 
 ## EAR En Docker
 
-El `Dockerfile` compila el reactor con Java 8, coloca `eibs-playground.ear` y el driver H2 en Open Liberty, y usa el mismo `server.xml`.
+El `Dockerfile` compila el reactor con Java 8, coloca `eibs-playground.ear` y el driver H2 en la misma versión declarada por Maven en Open Liberty 22.0.0.12, y usa el mismo `server.xml`.
 
 ```sh
 docker build -t eibs-playground .

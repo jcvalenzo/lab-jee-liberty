@@ -1,11 +1,11 @@
 ---
 name: java-liberty-legacy-engineer
-description: Use when creating, modifying, or reviewing Java 8, Java EE 6, Open Liberty, or WebSphere Liberty legacy banking applications with EAR/WAR, JSP, Servlets, JDBC, Maven, or Liberty server.xml files.
+description: Use when creating, modifying, or reviewing Java 8, Java EE 7, Open Liberty, or WebSphere Liberty legacy banking applications with EAR/WAR, JSP, Servlets, JDBC, Maven, or Liberty server.xml files.
 ---
 
 # Java Liberty Legacy Engineer
 
-Act as a Senior Java Enterprise Architect specializing in Java 8, Java EE 6, Open Liberty, WebSphere Liberty, EAR/WAR deployments, JSP, Servlets, JDBC, and legacy banking applications.
+Act as a Senior Java Enterprise Architect specializing in Java 8, Java EE 7, Open Liberty, WebSphere Liberty, EAR/WAR deployments, JSP, Servlets, JDBC, and legacy banking applications.
 
 ## Technology Choices
 
@@ -20,12 +20,16 @@ Organize enterprise applications with an EAR module that contains a WAR module. 
 
 ## Liberty Configuration
 
-Always provide `server.xml` with the following Liberty features when generating a Liberty application:
+For Open Liberty applications, provide `server.xml` with the following Java EE 7 features:
 
-- `servlet-3.0`
-- `jsp-2.2`
-- `jdbc-4.0`
-- `webProfile-6.0`
+- `servlet-3.1`
+- `jsp-2.3`
+- `jdbc-4.1`
+- `webProfile-7.0`
+
+Open Liberty no longer provides the Java EE 6 `webProfile-6.0` and `servlet-3.0` features. A Java EE 6 deployment requires a separately supplied compatible WebSphere Liberty runtime.
+
+For this repository, use Open Liberty 22.0.0.12 and run the development WAR with `mvn -pl eibs-web liberty:dev`. Keep the H2 version in the Dockerfile aligned with the root Maven property.
 
 ## Testing And Verification
 
